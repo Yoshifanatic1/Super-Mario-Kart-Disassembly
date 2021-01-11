@@ -1,0 +1,13 @@
+- This game makes heavy usage of pseudo indirect indexing with X (ex. LDA.w $0000,x). If adding in new RAM defines, be sure to check if !ContextDependentTable would be appropriate.
+
+- This game makes use of 16-bit indexing of direct page addresses, meaning something like "LDA.b $00,x" could point to a lot of places.
+
+- As this is a HiROM game, the DSP-1 registers are found at $006000 and $007000. These should all have defines.
+
+- Despite using the HiROM memory map, this game treats the upper halves of banks as if they're LoROM. Hence why the top halves of each bank are mapped to bank $80-$87, while the lower halves are mapped to $C0-$C7.
+
+- This game has lots of trampoline routines accessed through pseudo indirect X indexing. If I missed any ROM pointers, this is likely why.
+
+- It literally took until the ROM was 98% disassembled for me to get to the title screen. For reference, there were 1,349, 179, 16, and 6,489 bytes missing from the top half of banks C0, C1, C4, and C5 respectively at the time the title screen loaded.
+
+- This game had the largest SPC700 engine of any game I've looked at so far.
